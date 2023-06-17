@@ -15,7 +15,7 @@ resource "aws_iam_policy" "policy" {
           "ssm:GetParameters",
           "ssm:GetParameter"
         ],
-        "Resource" : "arn:aws:ssm:us-east-1:739561048503:parameter/roboshop.${var.env}.${var.component}.*"
+        "Resource" : "arn:aws:ssm:us-east-1:833689273858:parameter/roboshop.${var.env}.${var.component}.*"
       }
     ]
   })
@@ -88,7 +88,7 @@ resource "aws_instance" "instance" {
 }
 
 resource "aws_route53_record" "dns" {
-  zone_id = "Z055331734ICV430E01P7"
+  zone_id = "Z01782851TQOEKHYAZ2KN"
   name    = "${var.component}-dev"
   type    = "A"
   ttl     = 30
@@ -109,7 +109,7 @@ resource "null_resource" "ansible" {
     inline = [
       "sudo labauto ansible",
       "sudo set-hostname -skip-apply ${var.component}",
-      "ansible-pull -i localhost, -U https://github.com/raghudevopsb73/roboshop-ansible main.yml -e env=${var.env} -e role_name=${var.component}"
+      "ansible-pull -i localhost, -U https://github.com/prabhudevops123/roboshop-ansible main.yml -e env=${var.env} -e role_name=${var.component}"
     ]
   }
 }
